@@ -1,0 +1,40 @@
+import universidad.*
+import profesionales.*
+import empresa.*
+
+describe "test de empresas"{
+	var sanMartin = new Universidad(provincia= "Buenos Aires",honorariosPorHora=3500)
+	var rosario = new Universidad(provincia="Santa Fe",honorariosPorHora=2800)
+	var corrientes = new Universidad(provincia="Corrientes",honorariosPorHora=4200)
+	var hurlingam = new Universidad(provincia="Buenos Aires",honorariosPorHora=8800)
+	var juana = new ProfesionalVinculado(universidad= rosario)
+	var melina = new ProfesionalAsociado(universidad= corrientes)
+	var rocio = new ProfesionalLibre(universidad = hurlingam,  provincias = ["Santa Fe", "Córdoba" , "Buenos Aires"], honorarios = 5000)
+	var luciana = new ProfesionalLibre(universidad = rosario,  provincias = ["Santa Fe", "Entre Ríos"], honorarios = 3200)
+	
+	fixture {
+		
+	}
+	test "empresa1"{
+		var empresa1 =  new Empresa(honorarios = 3500, profesionales = [juana, melina, rocio, luciana] )
+		assert.equals(empresa1.profesionalesCaros().contains(rocio))
+		assert.equals(#{rosario, corrientes, hurlingam},empresa1.universidadesFormadoras())
+		assert.equals(juana,empresa1.profesionalMasBarato())
+		//assert.that(empresa1.provinciaCubierta("Santa Fe"))
+		//assert.that(empresa1.provinciaCubierta("Córdoba"))
+		//assert.notThat(empresa1.provinciaCubierta("Misiones"))
+		assert.equals(2,empresa1.cuantosProfesionalesEstudiaron(rosario))
+		assert.equals(1,empresa1.cuantosProfesionalesEstudiaron(hurlingam))
+		assert.equals(0,empresa1.cuantosProfesionalesEstudiaron(sanMartin))}
+
+}
+/*
+Una empresa que contrate a estos cuatro profesionales, y cuyos honorarios de referencia son 3500 pesos, debe tener
+--•como profesionales caros, solamente a Rocío.
+--•como universidades formadoras, a las de Rosario, Corrientes y Hurlingham.
+--•como profesional más barato a Juana.
+ las provincias de Santa Fe y Córdoba están cubiertas, pero Misiones no.
+•dos de sus profesionales estudiaron en Rosario, uno en Hurlingham, ninguno (o sea cero) en San Martín.
+
+Hacer los tests que sean necesarios para verificar esto. Se puede usar  fixture  para definir información que se usa en varios tests dentro de un describe file.
+*/
