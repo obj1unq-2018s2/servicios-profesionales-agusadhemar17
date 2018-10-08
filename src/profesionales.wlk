@@ -14,6 +14,7 @@ class ProfesionalAsociado {
 	
 	method recibirDinero(monto){ 
 		recaudado +=monto
+		// TODO Esto está mal, el propio IDE te lo está marcando.
 		self.pasarDinero (asociacionProfesionalesDelLitoral.recibirDinero(monto))
 	}
 	method pasarDinero(profesional, monto){ 
@@ -48,7 +49,9 @@ class ProfesionalVinculado {
 	method universidad() { return universidad }
 	method universidad(univ) { universidad = univ }
 	method provinciasDondePuedeTrabajar() { return #{universidad.provincia()}}
-	method honorariosPorHora() {return universidad.honorariosPorHora()} 
+	method honorariosPorHora() {return universidad.honorariosPorHora()}
+	
+	// TODO Debería darle la mitad a la universidad. 
 	method recibirdinero(monto){ recaudado += monto	}
 	method pasarDinero(profesional,monto){ 
 		recaudado -= monto
@@ -61,6 +64,8 @@ class ProfesionalVinculado {
 // a esta clase le faltan atributos y métodos
 class ProfesionalLibre {//se indica para cada uno en que provincias pueden trabajar y los honorarios por hora, además de la universidad.
 	var universidad
+	
+	// TODO Ojo con esto, inicializar la colección de esta manera no es necesario y posiblemente se deba a un error conceptual importante.
 	var property provincias = #{}
 	var  property honorarios
 	var recaudado = 0

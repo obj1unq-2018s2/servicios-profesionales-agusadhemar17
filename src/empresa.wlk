@@ -9,7 +9,9 @@ class Empresa{
 	method profesionalesCaros(){ return profesionales.filter({profesional=> profesional.honorariosPorHora()>honorarios})}
 	method universidadesFormadoras (){return profesionales.map({profesional=> profesional.universidad()}).asSet()}
 	method profesionalMasBarato(){ return profesionales.min({profesional=> profesional.honorariosPorHora()})}
-	method provinciaCubierta(provincia){ return profesionales.any({provincia=> profesionales.provinciasDondePuedeTrabajar()})
+	
+	// TODO Acá hay un error que te está marcando el IDE, el código está mal, prestá atención a los errores que marca.
+	method provinciaCubierta(provincia){ return profesionales.any({provincia=> profesionales.provinciasDondePuedeTrabajar()})}
 	method cuantosProfesionalesEstudiaron(universidad){return profesionales.count({profesional=> profesional.universidad()==universidad})}
 	//method esAtractivo(profesional){return
 }

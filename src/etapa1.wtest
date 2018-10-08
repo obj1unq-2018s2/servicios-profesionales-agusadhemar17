@@ -7,14 +7,19 @@ describe "test de empresas"{
 	var rosario = new Universidad(provincia="Santa Fe",honorariosPorHora=2800)
 	var corrientes = new Universidad(provincia="Corrientes",honorariosPorHora=4200)
 	var hurlingam = new Universidad(provincia="Buenos Aires",honorariosPorHora=8800)
+	
+	// TODO Corregí los errores que marca el IDE.
 	var juana = new ProfesionalVinculado(universidad= rosario)
 	var melina = new ProfesionalAsociado(universidad= corrientes)
 	var rocio = new ProfesionalLibre(universidad = hurlingam,  provincias = ["Santa Fe", "Córdoba" , "Buenos Aires"], honorarios = 5000)
 	var luciana = new ProfesionalLibre(universidad = rosario,  provincias = ["Santa Fe", "Entre Ríos"], honorarios = 3200)
 	
+	// TODO El fixture vacío es innecesario
 	fixture {
 		
 	}
+	
+	// TODO Sería mejor tener esto dividido en muchos tests.
 	test "empresa1"{
 		var empresa1 =  new Empresa(honorarios = 3500, profesionales = [juana, melina, rocio, luciana] )
 		assert.equals(empresa1.profesionalesCaros().contains(rocio))
